@@ -6,12 +6,12 @@ import "io"
 import "errors"
 import "strings"
 
-func xmlDecode(reader io.Reader, result interface{}) (err error) {
+func GetXml(reader io.Reader, result interface{}) (err error) {
 	decoder := xml.NewDecoder(reader)
 	return decoder.Decode(result)
 }
 
-func xmlDecodeList(reader io.Reader, elementName string, result interface{}) (err error) {
+func GetXmlList(reader io.Reader, elementName string, result interface{}) (err error) {
 	// Get []<type> (dereference *[]<type>)
 	slice := reflect.ValueOf(result).Elem()
 	elementType := slice.Type().Elem()
