@@ -7,7 +7,7 @@ import "reflect"
 import "strconv"
 
 type TvdbFileApi struct {
-	Getter PathGetter
+	Getter RelativePathGetter
 }
 
 //

@@ -10,7 +10,7 @@ type Tvdb struct {
 	FileApi    TvdbFileApi
 }
 
-const TheTVDBUrl = "https://thetvdb.com/api"
+const TheTvdbUrl = "https://thetvdb.com/api"
 
 func New(url string, apiKey string, mirrorPath string) (tvdb Tvdb, err error) {
 	// Set up the initial api and cache
@@ -49,7 +49,7 @@ func (tvdb Tvdb) PickMirrors() (err error) {
 	if err != nil {
 		return
 	}
-	tvdb.DiskCache.ExtensionSources = map[string]PathGetter{
+	tvdb.DiskCache.ExtensionSources = map[string]RelativePathGetter{
 		"xml":    TvdbDynamicApi{Getter: xmlMirror, ApiKey: tvdb.ApiKey}.FileApi().Getter,
 		"banner": TvdbDynamicApi{Getter: bannerMirror, ApiKey: tvdb.ApiKey}.FileApi().Getter,
 		"zip":    TvdbDynamicApi{Getter: zipMirror, ApiKey: tvdb.ApiKey}.FileApi().Getter,

@@ -7,7 +7,7 @@ import "log"
 import "reflect"
 
 type TvdbDynamicApi struct {
-	Getter PathGetter
+	Getter RelativePathGetter
 	ApiKey string
 }
 

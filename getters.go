@@ -6,7 +6,7 @@ import "io"
 import "os"
 import "path"
 
-type PathGetter interface {
+type RelativePathGetter interface {
 	Get(relativePath string) (reader io.ReadCloser, err error)
 	Path(relativePath string) (path string)
 }
@@ -43,7 +43,7 @@ func (api HttpGetter) Get(relative string) (reader io.ReadCloser, err error) {
 }
 
 type RelativeGetter struct {
-	RelativeTo   PathGetter
+	RelativeTo   RelativePathGetter
 	RelativePath string
 }
 

@@ -7,13 +7,13 @@ import "log"
 
 type DiskCache struct {
 	Root             string
-	DefaultSource    PathGetter
-	ExtensionSources map[string]PathGetter
+	DefaultSource    RelativePathGetter
+	ExtensionSources map[string]RelativePathGetter
 	DirPermissions   os.FileMode
 	Permissions      os.FileMode
 }
 
-func (diskCache DiskCache) sourceFor(relativePath string) PathGetter {
+func (diskCache DiskCache) sourceFor(relativePath string) RelativePathGetter {
 	ext := path.Ext(relativePath)
 	getter, ok := diskCache.ExtensionSources[ext]
 	if !ok {
