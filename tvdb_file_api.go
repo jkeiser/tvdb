@@ -23,30 +23,30 @@ func (api TvdbFileApi) GetLanguages() (languages []Language, err error) {
 	return
 }
 
-func (api TvdbFileApi) GetSeriesById(seriesId uint64, language string) (updates Updates, err error) {
+func (api TvdbFileApi) GetSeriesById(seriesId uint64, language string) (series Series, err error) {
 	if language == "" {
 		language = "en"
 	}
-	err = api.getXml(path.Join("series", strconv.FormatUint(seriesId, 10), language), &updates)
+	err = api.getXml(path.Join("series", strconv.FormatUint(seriesId, 10), language), &series)
 	return
 }
 
-func (api TvdbFileApi) GetAllUpdatesInTheLastDay() (updates Updates, err error) {
+func (api TvdbFileApi) GetAllUpdatesInTheLastDay() (updates DynamicUpdates, err error) {
 	err = api.getXml("updates/updates_day.xml", &updates)
 	return
 }
 
-func (api TvdbFileApi) GetAllUpdatesInTheLastWeek() (updates Updates, err error) {
+func (api TvdbFileApi) GetAllUpdatesInTheLastWeek() (updates DynamicUpdates, err error) {
 	err = api.getXml("updates/updates_week.xml", &updates)
 	return
 }
 
-func (api TvdbFileApi) GetAllUpdatesInTheLastMonth() (updates Updates, err error) {
+func (api TvdbFileApi) GetAllUpdatesInTheLastMonth() (updates DynamicUpdates, err error) {
 	err = api.getXml("updates/updates_month.xml", &updates)
 	return
 }
 
-func (api TvdbFileApi) GetAllUpdatesEver() (updates Updates, err error) {
+func (api TvdbFileApi) GetAllUpdatesEver() (updates DynamicUpdates, err error) {
 	err = api.getXml("updates/updates_all.xml", &updates)
 	return
 }

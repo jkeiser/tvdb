@@ -76,10 +76,10 @@ func (api TvdbDynamicApi) GetRatingsForUser(accountId string, seriesId string) (
 	return
 }
 
-// /api/Updates.php?type=none
+// /api/DynamicUpdates.php?type=none
 func (api TvdbDynamicApi) GetServerTime() (time uint64, err error) {
-	var updates Updates
-	err = api.getXml("Updates.php?type=none", &updates)
+	var updates DynamicUpdates
+	err = api.getXml("DynamicUpdates.php?type=none", &updates)
 	if err != nil {
 		return
 	}
@@ -87,19 +87,19 @@ func (api TvdbDynamicApi) GetServerTime() (time uint64, err error) {
 	return
 }
 
-// /api/Updates.php?since=<time>&type=<type>
-func (api TvdbDynamicApi) GetAllUpdatesSince(sinceTime uint64) (updates Updates, err error) {
-	err = api.getXml("Updates.php?time="+strconv.FormatUint(sinceTime, 10)+"&type=all", &updates)
+// /api/DynamicUpdates.php?since=<time>&type=<type>
+func (api TvdbDynamicApi) GetAllUpdatesSince(sinceTime uint64) (updates DynamicUpdates, err error) {
+	err = api.getXml("DynamicUpdates.php?time="+strconv.FormatUint(sinceTime, 10)+"&type=all", &updates)
 	return
 }
 
-func (api TvdbDynamicApi) GetSeriesUpdatesSince(sinceTime uint64) (updates Updates, err error) {
-	err = api.getXml("Updates.php?time="+strconv.FormatUint(sinceTime, 10)+"&type=series", &updates)
+func (api TvdbDynamicApi) GetSeriesUpdatesSince(sinceTime uint64) (updates DynamicUpdates, err error) {
+	err = api.getXml("DynamicUpdates.php?time="+strconv.FormatUint(sinceTime, 10)+"&type=series", &updates)
 	return
 }
 
-func (api TvdbDynamicApi) GetEpisodeUpdatesSince(sinceTime uint64) (updates Updates, err error) {
-	err = api.getXml("Updates.php?time="+strconv.FormatUint(sinceTime, 10)+"&type=episode", &updates)
+func (api TvdbDynamicApi) GetEpisodeUpdatesSince(sinceTime uint64) (updates DynamicUpdates, err error) {
+	err = api.getXml("DynamicUpdates.php?time="+strconv.FormatUint(sinceTime, 10)+"&type=episode", &updates)
 	return
 }
 
